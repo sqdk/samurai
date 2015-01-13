@@ -1,12 +1,7 @@
 package samurai
 
 import (
-	"bufio"
-	"fmt"
-	"os"
-	"regexp"
 	"testing"
-	"time"
 )
 
 func TestTokenizeLineAsyncApacheLog(t *testing.T) {
