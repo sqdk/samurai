@@ -6,7 +6,7 @@ Samurai takes data in a regular format (like logfiles) and tokenizes it accordin
 
 I made samurai as a functionally-equivalent alternative to grok.
 
-In its current state, i have been able to tokenize approx. 1.6 million lines (160 mb) of apache logs in 15-20 seconds (about 0.01 ms pr line) single-threaded on a Core i7-4500U@2.40GHz. Current experiments with goroutines create a massive memoryleak, but the code should in theory be threadable.
+In its current state, i have been able to tokenize approx. 1.6 million lines (160 mb) of apache logs in 15-20 seconds (about 0.01 ms pr line) single-threaded on a Core i7-4500U@2.40GHz. Current experiments with goroutines created a massive memoryleak, but the code should in theory be threadable.
 
 If you want to test it out yourself, big log files can be found here: http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
 
@@ -48,7 +48,7 @@ Patterns can also be nested. Lets extend the previous data to include last names
 	James Jameson;32;555-32211-32
 ```
 
-We can extract both first and lastname by nesting patterns:
+If we used the last pattern, we would end up with both the first and last name as one value. If we the first and last name as seperate values, we can insert a nested pattern that does this:
 ```
 	pattern := ";( (firstName,lastName),age,tel)"
 ```
@@ -70,4 +70,4 @@ Data can typically be split in multiple ways. This is an alternative pattern tha
 ```
 	exampleWithoutDelimiter := " (ip,nil,user,[(nil,date),](tz),\"(nil,method),url,\"(httpver), code, size)"
 ```
-The only difference is that you get date and timezone as separate values.
+The only difference is you get date and timezone as separate values because the first split is a space.
