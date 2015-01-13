@@ -33,7 +33,7 @@ Which is the equivalent to these string operations:
 	subComponents := strings.Split(inputString, ";")
 	values := make(map[string]string)
 
-	values["firstName"] = values[0]
+	values["name"] = values[0]
 	values["age"] = values[1]
 	values["tel"] = values[2]
 
