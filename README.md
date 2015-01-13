@@ -6,7 +6,7 @@ Samurai takes data in a regular format (like logfiles) and tokenizes it accordin
 
 I made samurai as a functionally-equivalent alternative to grok.
 
-In its current state, i have been able to tokenize approx. 1.6 million lines (160 mb) of apache logs in 15-20 seconds (about 0.01 ms pr line) single-threaded on a Core i7-4500U@2.40GHz. Current experiments with goroutines created a massive memoryleak, but the code should in theory be threadable.
+In its current state, i have been able to tokenize approx. 1.6 million lines (160 mb) of apache logs in 15-20 seconds (about 0.01 ms pr line) single-threaded on a Core i7-4500U@2.40GHz. Current experiments with goroutines created a massive memoryleak, but the code should in theory be threadable. 
 
 If you want to test it out yourself, big log files can be found here: http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
 
