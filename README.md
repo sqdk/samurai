@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sqdk/samurai.svg)](https://travis-ci.org/sqdk/samurai)
+
 samurai - a string tokenization library for Go
 =======
 
