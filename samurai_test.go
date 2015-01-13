@@ -158,56 +158,7 @@ func BenchmarkTokenizeLine(b *testing.B) {
 	}
 }
 
-func BenchmarkRegexTest(b *testing.B) {
-	b.StopTimer()
-	s := "Mr. Leonard Spock"
-	re1, err := regexp.Compile(`(Mr)(s)?\. (\w+) (\w+)`)
-	if err != nil {
-		b.Log(err)
-	}
-	b.StartTimer()
-	for i := 0; i <= b.N; i++ {
-		re1.FindStringSubmatch(s)
-	}
-}
-
-func BenchmarkMapConcat(b *testing.B) {
-	test1 := map[string]string{
-		"test":  "test",
-		"test2": "test2",
-		"test3": "test2",
-		"test4": "test2",
-		"test5": "test2",
-		"test6": "test2",
-		"test7": "test2",
-		"test8": "test2",
-	}
-	test2 := map[string]string{
-		"test":  "test",
-		"test2": "test2",
-		"test3": "test2",
-		"test4": "test2",
-		"test5": "test2",
-		"test6": "test2",
-		"test7": "test2",
-		"test8": "test2",
-	}
-	for i := 0; i <= b.N; i++ {
-		for k, v := range test1 {
-			test2[k] = v
-		}
-	}
-}
-
-func BenchmarkArrayConcat(b *testing.B) {
-	test1 := []string{"test", "test2", "test", "test2", "test", "test2", "test", "test2"}
-	test2 := []string{"test", "test2", "test", "test2", "test", "test2", "test", "test2"}
-
-	for i := 0; i <= b.N; i++ {
-		_ = append(test1, test2...)
-	}
-}
-
+/* Use this to test on a local file
 func TestTokenizeLine(t *testing.T) {
 	exampleWithoutDelimiter := " (ip,nil,user,[(nil,date),](tz),\"(nil,method),url,\"(httpver),code,size)"
 	//exampleWithoutDelimiter := "[( (ip,nil,user),](date,\"(nil, (method,url,httpver), (nil,httpcode,reqsize))))"
@@ -233,12 +184,4 @@ func TestTokenizeLine(t *testing.T) {
 	fmt.Printf("Parsed %v lines in %v\n", c, timeAfter.Sub(timeNow))
 	fmt.Printf("%v ns pr op\n", timeAfter.Sub(timeNow).Nanoseconds()/int64(c))
 }
-
-func TestOddPattern(t *testing.T) {
-	exampleWithoutDelimiter := "[( (ip,nil,user),](date,\"(nil, (method,url,httpver), (nil,httpcode,reqsize))))"
-	testData := "ip114.phx.primenet.com - - [04/Sep/1995:12:13:34 -0400] \"GET /pub/listserv/scroll.gif\" 200 999"
-
-	data := TokenizeBlock(testData, exampleWithoutDelimiter)
-
-	fmt.Println(data)
-}
+*/
