@@ -2,8 +2,6 @@
 
 samurai - a string tokenization library for Go
 =======
-
-# About
 Samurai takes data in a regular format (like logfiles) and tokenizes it according to a predefined pattern. The tokenization is done by gradually splitting (or slicing, hence the name) the data until you get the subcomponents that you want. 
 
 I made samurai as a functionally-equivalent alternative to grok.
