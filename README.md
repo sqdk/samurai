@@ -14,22 +14,22 @@ If you want to test it out yourself, big log files can be found here: http://ita
 Lets start with a simple example. Our input data is a collection of semi-colon seperated lines of data:
 
 ```
-	John;21;555-32132-11
-	Matt;32;555-11231-11
-	Chris;32;555-32211-32
+	John Johnson;21;555-32132-11
+	Matt Mattson;32;555-11231-11
+	James Jameson;32;555-32211-32
 ```
 
 We can tokenize this data by using the following pattern:
 ```
-	pattern := ";(firstName,age,tel)"
-	//; is the char or string to split the data with
-	//The names inside the parenthesis indicate the given names of the values at the
-	//relative index in the resulting array after splitting.
+	pattern := ";(name,age,tel)"
+	........... ^ . ^ . ^ . ^
+	........... | .. \---\---\--- Everything inside the parenthesis names the 3 substrings.
+	............\--- This indicates a split by character ";" which should result in 3 substrings.
 ```
 
 Which is the equivalent to these string operations:
 ```
-	inputString := "John;21;555-32132-11"
+	inputString := "John Johnson;21;555-32132-11"
 	subComponents := strings.Split(inputString, ";")
 	values := make(map[string]string)
 
@@ -40,15 +40,9 @@ Which is the equivalent to these string operations:
 	return values
 ```
 
-
 Patterns can also be nested. Lets extend the previous data to include last names:
-```
-	John Johnson;21;555-32132-11
-	Matt Mattson;32;555-11231-11
-	James Jameson;32;555-32211-32
-```
 
-If we used the last pattern, we would end up with both the first and last name as one value. If we the first and last name as seperate values, we can insert a nested pattern that does this:
+If we used the last pattern, we would end up with both the first and last name as one value. If we need first and last name  as separate values, we can insert a nested pattern that splits with a space:
 ```
 	pattern := ";( (firstName,lastName),age,tel)"
 ```
@@ -70,4 +64,4 @@ Data can typically be split in multiple ways. This is an alternative pattern tha
 ```
 	exampleWithoutDelimiter := " (ip,nil,user,[(nil,date),](tz),\"(nil,method),url,\"(httpver), code, size)"
 ```
-The only difference is you get date and timezone as separate values because the first split is a space.
+Only difference is you get date and timezone as separate values because the first split is a space.
